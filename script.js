@@ -32,24 +32,50 @@ function randomNum(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
+function ASCIINumberToChar() {
+    // take one number, say, 127 and convert it to its ASCII char representation
+    let result = String.fromCharCode(randomUpper(65, 90))
+    return result;
+}
+
+
+function randomUpper(min, max) {
+    // Math.floor(Math.random() * 10)
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 genBtn.addEventListener("click", genNum)
 
 let minDigi = document.getElementById("min")
 let maxDigi = document.getElementById("max")
+let upperCase = document.getElementById("upperCase")
 
 function genNum() {
     let numRange = []
 
     for (let i = parseInt(minDigi.value, 10); i <= parseInt(maxDigi.value, 10); i++) {
-        numRange.push(randomNum(0, 9))
+        if (upperCase.checked !== true) {
+            numRange.push(randomNum(0, 9)), String.fromCharCode(randomUpper(65, 90))
+        }
+        else {
+            numRange.push(randomNum(0, 9))
+        }
     }
-    return console.log(numRange)
+    return console.log(numRange.join(""))
 }
+
 // genNum()
-
+// 
 // document.body.innerText = (`${numRange}`)
+function check() {
+    if (upperCase.checked === true) {
+        return console.log(`upperCase checked`)
+    }else{
+        return console.log(`upperCase not checked`)
+    }
+}
 
-// console.log(genNum())
+console.log(check())
 // console.log(setNumRange(2,10))
 
 // console.log(setNumRange(5,20))
