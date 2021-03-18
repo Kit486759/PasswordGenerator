@@ -34,23 +34,18 @@ function randomNum(min, max) {
 
 genBtn.addEventListener("click", genNum)
 
+let minDigi = document.getElementById("min")
+let maxDigi = document.getElementById("max")
 
 function genNum() {
     let numRange = []
 
-    let minDigi = document.getElementById("min")
-    let start = parseInt(minDigi.value, 10)
-
-    let maxDigi = document.getElementById("max")
-    let end = parseInt(maxDigi.value, 10)
-
-    for (let i = start; i < end; i++) {
+    for (let i = parseInt(minDigi.value, 10); i <= parseInt(maxDigi.value, 10); i++) {
         numRange.push(randomNum(0, 9))
     }
-    return numRange
+    return console.log(numRange)
 }
-
-console.log(genNum())
+// genNum()
 
 // document.body.innerText = (`${numRange}`)
 
