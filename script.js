@@ -1,34 +1,16 @@
 
 
 
-// function RandomNumberListA(start, end) {
-//     // return list of random numbers between start and end
-//     let list = []
-//     for (var i = start; i <= end; i++) {
-//         list.push(randomNum(start, end));
-//     }
-//     return list;
-// }
-// console.log(`start from 2 ,end with 10 and random number between `, RandomNumberListA(6, 10));
-
 
 let minDigi = document.getElementById("min")
 let maxDigi = document.getElementById("max")
 let genBtn = document.getElementById("genBtn")
-let resultDisplay = document.getElementById("resultDisplay")
+let resultDisplayEl = document.getElementById("resultDisplay")
 let number = document.getElementById("number")
 let upperCase = document.getElementById("upperCase")
 let lowerCase = document.getElementById("lowerCase")
 let symbol = document.getElementById("symbol")
 
-
-// genBtn.addEventListener("click",setNumRange)
-
-
-// function setNumRange(minDigi, maxDigi) {
-//     return (`${minDigi},${maxDigi}`);
-
-// }
 
 //================= Random function with min and max for in put ASCII code 
 function random(min, max) {
@@ -82,49 +64,64 @@ genBtn.addEventListener("click", randomType)
 
 function randomType() {
 
-    let resultDisplay = []
+    let resultTemp = []
 
-    for (let i = parseInt(minDigi.value, 10); i <= parseInt(maxDigi.value, 10); i++) {
-
+    for (let i = 1; i <= parseInt(maxDigi.value, 10); i++) {
+        let result = []
         if (number.checked === true) {
-            console.log(`test number checked`)
+            // console.log(`test number checked`)
             result += randomNum()
         }
 
         if (upperCase.checked === true) {
-            console.log(`test upperCase checked`)
+            // console.log(`test upperCase checked`)
             result += randomUpper()
         }
 
         if (lowerCase.checked === true) {
-            console.log(`test lowerCase checked`)
+            // console.log(`test lowerCase checked`)
             result += randomLower()
         }
 
         if (symbol.checked === true) {
-            console.log(`test symbol checked`)
+            // console.log(`test symbol checked`)
             result += randomSymbol()
         }
 
-        resultDisplay.push(result)
+        resultTemp.push(result)
     }
-    return console.log(resultDisplay)
+
+    // got result in number, upper, lower and symbol group like "1Aa!,2Bb@,3Cc#"
+    console.log(`got result in number, upper, lower and symbol group ${resultTemp}`)
+
+    // Join all the code into one string
+    let resultTempJoin = resultTemp.join("")
+
+    // Split the string and make it array with each word
+    let resultTempSplit = resultTempJoin.split("")
+
+    console.log(` result join and split to each by each ${resultTempSplit}`)
+
+    // Insert the result into random loop which with target minimum number to maximum number
+    let resultDisplay = []
+    for (let i = 1; i <= parseInt(maxDigi.value, 10); i++) {
+        resultDisplay.push(resultTempSplit[random(0, resultTempSplit.length)])
+    }
+
+    console.log(resultDisplay)
+
+    resultDisplay.value = resultDisplay.join("")
+
+    return resultDisplayEl.value=resultDisplay.value
 }
 
 
+// resultDisplay.innerHTML = (`<p>sdsd</p>`)
 
-// function genNum() {
-//     let numRange = []
+console.log(resultDisplayEl.value)
 
-//     for (let i = parseInt(minDigi.value, 10); i <= parseInt(maxDigi.value, 10); i++) {
-//         if (upperCase.checked !== true) {
-//             numRange.push(randomNum(0, 9)), String.fromCharCode(randomUpper(65, 90))
-//         }
-//         else {
-//             numRange.push(randomNum(0, 9))
-//         }
-//     }
-//     return console.log(numRange.join(""))
+// function convertResult() {
+//     resultDisplay
 // }
 
 
