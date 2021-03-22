@@ -64,64 +64,87 @@ genBtn.addEventListener("click", randomType)
 
 function randomType() {
 
-    let resultTemp = []
 
+    let resultrandomNum = []
+    let resultrandomUpper = []
+    let resultrandomLower = []
+    let resultrandomSymbol = []
     for (let i = 1; i <= parseInt(maxDigi.value, 10); i++) {
-        let result = []
+
+
         if (number.checked === true) {
             // console.log(`test number checked`)
-            result += randomNum()
+            resultrandomNum += randomNum()
         }
 
         if (upperCase.checked === true) {
             // console.log(`test upperCase checked`)
-            result += randomUpper()
+            resultrandomUpper += randomUpper()
         }
 
         if (lowerCase.checked === true) {
             // console.log(`test lowerCase checked`)
-            result += randomLower()
+            resultrandomLower += randomLower()
         }
 
         if (symbol.checked === true) {
             // console.log(`test symbol checked`)
-            result += randomSymbol()
+            resultrandomSymbol += randomSymbol()
         }
 
-        resultTemp.push(result)
+        // resultTemp.push(result)
+
     }
+    console.log(resultrandomNum)
+    console.log(resultrandomUpper)
+    console.log(resultrandomLower)
+    console.log(resultrandomSymbol)
 
-    // got result in number, upper, lower and symbol group like "1Aa!,2Bb@,3Cc#"
-    console.log(`got result in number, upper, lower and symbol group ${resultTemp}`)
+    let resultTemp = []
 
-    // Join all the code into one string
-    let resultTempJoin = resultTemp.join("")
-
-    // Split the string and make it array with each word
-    let resultTempSplit = resultTempJoin.split("")
-
-    console.log(` result join and split to each by each ${resultTempSplit}`)
-
-    // Insert the result into random loop which with target minimum number to maximum number
-    let resultDisplay = []
+    // Loop and push, make sure atleast contain 1 chosen element in the result
     for (let i = 1; i <= parseInt(maxDigi.value, 10); i++) {
-        resultDisplay.push(resultTempSplit[random(0, resultTempSplit.length)])
+
+        if (number.checked === true && resultTemp.length < maxDigi.value) {
+            // console.log(`test number checked`)
+            resultTemp.push(resultrandomNum[random(1, maxDigi.value)])
+        }
+
+        if (number.checked === true && resultTemp.length < maxDigi.value) {
+            // console.log(`test number checked`)
+            resultTemp.push(resultrandomUpper[random(1, maxDigi.value)])
+        }
+
+        if (number.checked === true && resultTemp.length < maxDigi.value) {
+            // console.log(`test number checked`)
+            resultTemp.push(resultrandomLower[random(1, maxDigi.value)])
+        }
+
+        if (number.checked === true && resultTemp.length < maxDigi.value) {
+            // console.log(`test number checked`)
+            resultTemp.push(resultrandomSymbol[random(1, maxDigi.value)])
+        }
+
     }
 
-    console.log(resultDisplay)
+    // shuffle the result
+    shuffle(resultTemp)
+    console.log(resultTemp)
 
-    resultDisplay.value = resultDisplay.join("")
-
+    // convert result to string and display in HTML
+    resultDisplay.value = resultTemp.join("")
     return resultDisplayEl.value=resultDisplay.value
 }
 
+// Shuffle function for the result
+function shuffle(arr) {
 
-// resultDisplay.innerHTML = (`<p>sdsd</p>`)
-
-console.log(resultDisplayEl.value)
-
-// function convertResult() {
-//     resultDisplay
-// }
-
+    for (i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+    }
+    return;
+}
 
