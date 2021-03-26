@@ -10,6 +10,7 @@ let number = document.getElementById("number")
 let upperCase = document.getElementById("upperCase")
 let lowerCase = document.getElementById("lowerCase")
 let symbol = document.getElementById("symbol")
+let copyBtn = document.getElementById("copyBtn")
 
 
 //================= Random function with min and max for in put ASCII code 
@@ -110,17 +111,17 @@ function randomType() {
             resultTemp.push(resultrandomNum[random(1, maxDigi.value)])
         }
 
-        if (number.checked === true && resultTemp.length < maxDigi.value) {
+        if (upperCase.checked === true && resultTemp.length < maxDigi.value) {
             // console.log(`test number checked`)
             resultTemp.push(resultrandomUpper[random(1, maxDigi.value)])
         }
 
-        if (number.checked === true && resultTemp.length < maxDigi.value) {
+        if (lowerCase.checked === true && resultTemp.length < maxDigi.value) {
             // console.log(`test number checked`)
             resultTemp.push(resultrandomLower[random(1, maxDigi.value)])
         }
 
-        if (number.checked === true && resultTemp.length < maxDigi.value) {
+        if (symbol.checked === true && resultTemp.length < maxDigi.value) {
             // console.log(`test number checked`)
             resultTemp.push(resultrandomSymbol[random(1, maxDigi.value)])
         }
@@ -133,7 +134,7 @@ function randomType() {
 
     // convert result to string and display in HTML
     resultDisplay.value = resultTemp.join("")
-    return resultDisplayEl.value=resultDisplay.value
+    return resultDisplayEl.value = resultDisplay.value
 }
 
 // Shuffle function for the result
@@ -147,4 +148,19 @@ function shuffle(arr) {
     }
     return;
 }
+
+function copy() {
+    if (resultDisplayEl.value === "") {
+        alert(`Please generate the password.`);
+    } else {
+        resultDisplayEl.select();
+        resultDisplayEl.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        alert(`Password copied to clipboard`);
+    }
+}
+
+
+
+copyBtn.addEventListener("click", copy)
 
